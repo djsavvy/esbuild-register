@@ -11,7 +11,7 @@ specifiers:
   source-map: 0.7.3
   source-map-support: ^0.5.19
   strip-json-comments: ^4.0.0
-  tsconfig-paths: ^4.1.0
+  tsconfig-paths: djsavvy/tsconfig-paths
   tsup: ^4.7.1
   typescript: ^4.7.4
   uvu: 0.5.2
@@ -27,7 +27,7 @@ devDependencies:
   source-map: 0.7.3
   source-map-support: 0.5.19
   strip-json-comments: 4.0.0
-  tsconfig-paths: 4.1.0
+  tsconfig-paths: github.com/djsavvy/tsconfig-paths/9da5aa5783ed471900d2f09f997bd8c3539b5328
   tsup: 4.7.1_typescript@4.7.4
   typescript: 4.7.4
   uvu: 0.5.2
@@ -1035,15 +1035,6 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /tsconfig-paths/4.1.0:
-    resolution: {integrity: sha512-AHx4Euop/dXFC+Vx589alFba8QItjF+8hf8LtmuiCwHyI4rHXQtOOENaM8kvYf5fR0dRChy3wzWIZ9WbB7FWow==}
-    engines: {node: '>=6'}
-    dependencies:
-      json5: 2.2.1
-      minimist: 1.2.6
-      strip-bom: 3.0.0
-    dev: true
-
   /tsup/4.7.1_typescript@4.7.4:
     resolution: {integrity: sha512-6/NXV+Wp0t3CxZZVxB0HZULYzNYOGvpQRY2lDyMQawjaMyQUcna2Voyai6RsfqSRAuObaQfengtMvFs0HlsYMw==}
     hasBin: true
@@ -1100,4 +1091,15 @@ packages:
   /yaml/1.10.0:
     resolution: {integrity: sha512-yr2icI4glYaNG+KWONODapy2/jDdMSDnrONSjblABjD9B4Z5LgiircSt8m8sRZFNi08kG9Sm0uSHtEmP3zaEGg==}
     engines: {node: '>= 6'}
+    dev: true
+
+  github.com/djsavvy/tsconfig-paths/9da5aa5783ed471900d2f09f997bd8c3539b5328:
+    resolution: {tarball: https://codeload.github.com/djsavvy/tsconfig-paths/tar.gz/9da5aa5783ed471900d2f09f997bd8c3539b5328}
+    name: tsconfig-paths
+    version: 4.1.0
+    engines: {node: '>=6'}
+    dependencies:
+      json5: 2.2.1
+      minimist: 1.2.6
+      strip-bom: 3.0.0
     dev: true
