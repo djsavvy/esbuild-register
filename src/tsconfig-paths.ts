@@ -3,8 +3,11 @@ import { loadConfig, createMatchPath } from 'tsconfig-paths'
 
 const noOp = () => {}
 
-export function registerTsconfigPaths(): () => void {
-  const configLoaderResult = loadConfig(process.cwd())
+// We use this argument structure so that we can adapt to use configLoader() from 'tsconfig-paths'
+// once it becomes exported. This will give even more customizability, including using options
+// directly instead of passing in a package.json path.
+export function registerTsconfigPaths(args?: { cwd: string }): () => void {
+  const configLoaderResult = loadConfig(args?.cwd || process.cwd())
 
   if (configLoaderResult.resultType === 'failed') {
     return noOp
