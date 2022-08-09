@@ -14,7 +14,7 @@ const map: { [file: string]: string | RawSourceMap } = {}
 
 function installSourceMapSupport() {
   if ((process as any).setSourceMapsEnabled) {
-    (process as any).setSourceMapsEnabled(true);
+    ;(process as any).setSourceMapsEnabled(true)
   } else {
     sourceMapSupport.install({
       handleUncaughtExceptions: false,
@@ -91,6 +91,7 @@ interface RegisterOptions extends TransformOptions {
    * A matcher function, will be called with path to a file. Should return truthy if the file should be hooked, falsy otherwise.
    */
   hookMatcher?(fileName: string): boolean
+  tsConfigDir?: string
 }
 
 export function register(esbuildOptions: RegisterOptions = {}) {
@@ -98,11 +99,12 @@ export function register(esbuildOptions: RegisterOptions = {}) {
     extensions = DEFAULT_EXTENSIONS,
     hookIgnoreNodeModules = true,
     hookMatcher,
+    tsConfigDir,
     ...overrides
   } = esbuildOptions
 
   const compile: COMPILE = function compile(code, filename, format) {
-    const dir = dirname(filename)
+    const dir = tsConfigDir || dirname(filename)
     const options = getOptions(dir)
     format = format ?? inferPackageFormat(dir, filename)
 
@@ -140,7 +142,9 @@ export function register(esbuildOptions: RegisterOptions = {}) {
   installSourceMapSupport()
   patchCommonJsLoader(compile)
 
-  const unregisterTsconfigPaths = registerTsconfigPaths()
+  const unregisterTsconfigPaths = registerTsconfigPaths(
+    tsConfigDir ? { cwd: tsConfigDir } : undefined,
+  )
 
   return {
     unregister() {
